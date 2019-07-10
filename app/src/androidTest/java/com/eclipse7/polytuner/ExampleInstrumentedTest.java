@@ -1,4 +1,4 @@
-package com.example.polytuner;
+package com.eclipse7.polytuner;
 
 import android.content.Context;
 

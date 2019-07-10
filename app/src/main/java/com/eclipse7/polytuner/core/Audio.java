@@ -1,4 +1,4 @@
-package com.example.polytuner.core;
+package com.eclipse7.polytuner.core;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -9,7 +9,7 @@ import android.media.MediaRecorder;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.polytuner.R;
+import com.eclipse7.polytuner.R;
 
 //work on fSample 44.1kHz or 48kHz
 public class Audio implements Runnable {

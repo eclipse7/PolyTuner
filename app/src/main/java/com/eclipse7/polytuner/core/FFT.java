@@ -1,4 +1,4 @@
-package com.example.polytuner.core;
+package com.eclipse7.polytuner.core;
 
 public class FFT {
     private int n, m;

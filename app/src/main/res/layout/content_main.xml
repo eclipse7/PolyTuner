@@ -17,7 +17,7 @@
         <!--app:layout_constraintRight_toRightOf="parent"-->
         <!--app:layout_constraintTop_toTopOf="parent" />-->
 
-    <com.example.polytuner.Display
+    <com.eclipse7.polytuner.Display
         android:id="@+id/display"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

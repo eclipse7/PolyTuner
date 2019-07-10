@@ -1,4 +1,4 @@
-package com.example.polytuner;
+package com.eclipse7.polytuner;
 
 import android.Manifest;
 import android.content.DialogInterface;
@@ -22,7 +22,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
-import com.example.polytuner.core.Audio;
+import com.eclipse7.polytuner.core.Audio;
 
 public class MainActivity extends AppCompatActivity {
     private Display display;

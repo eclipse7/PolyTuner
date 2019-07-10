@@ -1,12 +1,12 @@
-package com.example.polytuner;
+package com.eclipse7.polytuner;
 
 import android.content.Context;
 
 import java.util.Arrays;
 
-import com.example.polytuner.core.Audio;
-import com.example.polytuner.utils.Bright;
-import com.example.polytuner.utils.Time;
+import com.eclipse7.polytuner.core.Audio;
+import com.eclipse7.polytuner.utils.Bright;
+import com.eclipse7.polytuner.utils.Time;
 
 public class Tuner implements Runnable{
 

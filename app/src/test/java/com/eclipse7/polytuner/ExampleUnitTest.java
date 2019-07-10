@@ -1,4 +1,4 @@
-package com.example.polytuner;
+package com.eclipse7.polytuner;
 
 import org.junit.Test;
 
