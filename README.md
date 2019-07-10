@@ -12,6 +12,9 @@ Features:
 [Download apk](https://github.com/eclipse7/PolyTuner/releases/download/v2.0/polytuner-v2.0.apk)
 
 ## Screenshots
+<img src="images/1.png" height=960>
+<img src="images/2.png" height=960>
+<img src="images/3.png" weight=300>
 ![1](images/1.png)
 ![2](images/2.png)
 ![3](images/3.png)
