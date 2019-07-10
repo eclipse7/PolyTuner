@@ -1,0 +1,30 @@
+<resources>
+    <!-- Tuning Preferences -->
+    <string-array name="tuning_entries">
+        <item>E</item>
+        <item>Drop D</item>
+        <item>Eb</item>
+        <item>D</item>
+        <item>Drop C</item>
+        <item>Db</item>
+        <item>C</item>
+        <item>B</item>
+    </string-array>
+
+    <string-array name="tuning_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+    </string-array>
+
+    <integer-array name="sample_rates">
+        <item>44100</item>
+        <item>48000</item>
+    </integer-array>
+
+</resources>

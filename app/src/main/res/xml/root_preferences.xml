@@ -1,0 +1,26 @@
+
+<androidx.preference.PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+    <SwitchPreferenceCompat
+        app:key="display_mode"
+        app:icon="@mipmap/ic_meteor"
+        app:summaryOff="@string/display_mode_classic"
+        app:summaryOn="@string/display_mode_strobe"
+        app:title="@string/display_mode_title" />
+
+    <SwitchPreferenceCompat
+        app:key="poly"
+        app:icon="@mipmap/ic_guitar_pick"
+        app:summaryOff="@string/poly_off"
+        app:summaryOn="@string/poly_on"
+        app:title="@string/poly_title" />
+
+    <ListPreference
+        app:defaultValue="0"
+        app:icon="@mipmap/ic_guitar_electric"
+        app:entries="@array/tuning_entries"
+        app:entryValues="@array/tuning_values"
+        app:key="tuning"
+        app:title="@string/tuning_title"
+        app:useSimpleSummaryProvider="true" />
+
+</androidx.preference.PreferenceScreen>
