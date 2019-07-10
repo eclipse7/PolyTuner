@@ -1,5 +1,5 @@
 # PolyTuner
-Polyphonic Tuner for Android
+Guitar Polyphonic Tuner for Android
 
 Features:
 * Minimalistic interface
