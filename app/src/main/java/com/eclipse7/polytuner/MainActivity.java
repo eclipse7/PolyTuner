@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -152,10 +153,18 @@ public class MainActivity extends AppCompatActivity {
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
             alertDialogBuilder.setCancelable(true);
 
+            String version = "";
+            try {
+                PackageInfo pInfo = this.getPackageManager().getPackageInfo(getPackageName(), 0);
+                version = pInfo.versionName;
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
+            }
+
             View view = getLayoutInflater().inflate(R.layout.about_dialog, null);
-            TextView version = view.findViewById(R.id.about);
-            String s = "Tuner version " + "1.0";
-            version.setText(s);
+            TextView version_view = view.findViewById(R.id.about);
+            String s = "Tuner version " + version;
+            version_view.setText(s);
             alertDialogBuilder.setView(view);
 
             alertDialogBuilder.setTitle(R.string.info_title);
