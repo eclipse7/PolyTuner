@@ -448,7 +448,8 @@ public class Display extends View {
 
 	private void drawChromatic() {
 		setChromaticCent(needleCent, strobePosition, brightness, brightnessCenterLeft, brightnessCenterRight);
-		setNote(chromaticNote, brightness);
+		if (chromaticNote >= 0) setNote(chromaticNote, brightness);
+		else drawNoSignal(brightness);
 	}
 
 	private void drawPoly() {

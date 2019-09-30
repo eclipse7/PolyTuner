@@ -7,6 +7,7 @@ import java.util.Arrays;
 import com.eclipse7.polytuner.core.Audio;
 import com.eclipse7.polytuner.utils.Bright;
 import com.eclipse7.polytuner.utils.Time;
+import com.eclipse7.polytuner.core.CategoryFilter;
 
 public class Tuner implements Runnable{
 
@@ -54,6 +55,7 @@ public class Tuner implements Runnable{
     private float[] polyCents = new float[6];
     private float[] polyBright = new float[6];
     private float noSignalBright;
+    private CategoryFilter categoryFilter;
 
     public Audio getAudio() {
         return audio;
@@ -76,6 +78,7 @@ public class Tuner implements Runnable{
         audio = new Audio(context);
         this.display = display;
         running = false;
+        categoryFilter = new CategoryFilter();
     }
 
     public void start() {
@@ -234,6 +237,7 @@ public class Tuner implements Runnable{
             display.setTuneModeString(tuneModeString);
 
             display.setChromaticFreq(chromaticFreq);
+            chromaticNote = categoryFilter.filtering(chromaticNote);
             display.setChromaticNote(chromaticNote);
             display.setStrobeCent(strobeCent);
 

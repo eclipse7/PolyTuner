@@ -22,7 +22,7 @@ public class Audio implements Runnable {
     private static final double MID_AMPLITUDE = -55;
     private static final double MIN_POLY_AMPLITUDE = -70;
     private static final double MIN_FREQ = 26.5;
-    private static final double MAX_FREQ = 4500;
+    private static final double MAX_FREQ = 2100;
 
     private Thread thread;
     private boolean running = false;
@@ -124,8 +124,10 @@ public class Audio implements Runnable {
         fft = new FFT(SAMPLES);
 
         // "gauss 3 order"
-        double[] a = {0.03728};
-        double[] b = {1.0, -2.17266, 1.63647, -0.42653};
+//        double[] a = {0.03728};
+//        double[] b = {1.0, -2.17266, 1.63647, -0.42653};
+        double[] a = {0.025363};
+        double[] b = {1.0, -2.403709, 2.166681, -0.868012, 0.130403};
         filterCent = new Filter(a, b);
         filterFreq = new Filter(a, b);
 
@@ -405,9 +407,6 @@ public class Audio implements Runnable {
                     }
                 }
                 harmonic2 = max;
-
-//                maxLevel = (20.0 * Math.log(amps[harmonic2])/Math.log(10.0));
-
                 chromaticFound = ((20.0 * Math.log(amps[harmonic2])/Math.log(10.0)) > MIN_AMPLITUDE)
                         && (harmonic2 != 0);
             }
@@ -443,7 +442,9 @@ public class Audio implements Runnable {
             } else {
                 if (chromaticFound) mode = 1;
             }
-
+            if (mode == 0) {
+                chromaticNote = -1;
+            }
             audioFPS++;
         }
 
