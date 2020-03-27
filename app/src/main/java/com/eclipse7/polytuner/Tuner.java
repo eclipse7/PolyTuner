@@ -13,7 +13,7 @@ public class Tuner implements Runnable{
 
     private static final float UPDATE_RATE = 30.0f;
     private static final float UPDATE_INTERVAL = Time.SECOND / UPDATE_RATE;
-    private static final long IDLE_TIME = 20;
+    private static final long IDLE_TIME = 1;
     private static final float RISE_SPEED = 0.3f;
     private static final float FALL_SPEED = 0.3f;
     private static final float RISE_SLOW_SPEED = 0.05f;

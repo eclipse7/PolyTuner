@@ -6,17 +6,19 @@ import android.media.AudioFormat;
 import android.media.AudioRecord;
 import android.media.MediaRecorder;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.eclipse7.polytuner.R;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 //work on fSample 44.1kHz or 48kHz
 public class Audio implements Runnable {
-    private static final int SIZE = 2048;  // audioRecoder buffer
+    private static final String TAG = "AudioRecorder";
+    private static final int SIZE = 2048*2;  // audioRecoder buffer
 
     private static final int SAMPLES = 8192;    // fft size
-    private static final int STEP = 1536;  // size of windows step
+    private static final int ANALYSIS_STEP = 2048;  // size of windows step
 
     private static final double MIN_AMPLITUDE = -70;
     private static final double MID_AMPLITUDE = -55;
@@ -29,7 +31,6 @@ public class Audio implements Runnable {
     private Context context;
     private AudioRecord audioRecord;
 
-    private RingBuffer ringbuffer;
     private double[] xReal;
     private double[] xImag;
     private double[] amps;
@@ -68,6 +69,7 @@ public class Audio implements Runnable {
     private float[] polyCents = new float[6];
     private int audioFPS = 0;
     private double maxLevel = 0;
+    private double[] buff;
 
     public int getAudioFPS() {
         return audioFPS;
@@ -115,7 +117,7 @@ public class Audio implements Runnable {
     public Audio(Context context)
     {
         this.context = context;
-        ringbuffer = new RingBuffer(SAMPLES, STEP);
+        buff = new double[SAMPLES];
         xReal = new double[SAMPLES];
         xImag = new double[SAMPLES];
         amps = new double[SAMPLES/2];
@@ -224,33 +226,34 @@ public class Audio implements Runnable {
         }
 
         // Create buffer for input data
-        short[] data = new short[STEP];
-        double[] dataDecimate = new double[STEP];
+        short[] data = new short[ANALYSIS_STEP];
+        double[] dataDecimate = new double[ANALYSIS_STEP];
 
         audioRecord.startRecording();
 
         while (thread != null)
         {
-            size = audioRecord.read(data, 0, STEP);
+            size = audioRecord.read(data, 0, ANALYSIS_STEP);
             if (size == 0) {
                 thread = null;
                 break;
             }
 
             double sum = 0;
-            for (int i = 0; i < STEP; i++) {
-                dataDecimate[i] = data[i] / 32768.0f;
-                double v = data[i] / 32768.0f;
+            for (int i = 0; i < ANALYSIS_STEP; i++) {
+                dataDecimate[i] = data[i] / 32768.0;
+                double v = data[i] / 32768.0;
                 sum += v * v;
             }
-            signalRMS = (float) Math.sqrt(sum / STEP);
+            signalRMS = (float) Math.sqrt(sum / ANALYSIS_STEP);
 
-            ringbuffer.writeToRing(dataDecimate);
+            // Ring buffer
+            System.arraycopy(buff, ANALYSIS_STEP, buff, 0, SAMPLES-ANALYSIS_STEP);
+            System.arraycopy(dataDecimate, 0, buff, SAMPLES-ANALYSIS_STEP, ANALYSIS_STEP);
+            xReal = Arrays.copyOf(buff, SAMPLES);
 
             // main Algorithm input - buffer[SAMPLES]  30fps
             // output - mode, chromaticFreq, chromaticNote, chromaticCent, PolyNotes[], PolyCents[]
-
-            ringbuffer.readFromRing(xReal, xImag);
             fft.calcAmpSpectrum(xReal, xImag, amps);
 
             amps[0] = 0;
