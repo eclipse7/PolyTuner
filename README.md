@@ -9,7 +9,7 @@ Features:
 * Tuning Accuracy: ±0.1 cent
 
 ## Downloads
-1. Download [apk](https://github.com/eclipse7/PolyTuner/releases/download/v2.1/polytuner-v2.1.apk)
+1. Download [apk](https://github.com/eclipse7/PolyTuner/releases/download/v2.2/polytuner-v2.2.apk)
 2. Turn off internet or disable Play Protect
 3. Install apk
 
