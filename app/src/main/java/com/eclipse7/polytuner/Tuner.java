@@ -125,13 +125,8 @@ public class Tuner implements Runnable{
 
             //// STROBE +/-0.1 cent
             strobeCent = chromaticCent;
-            switch (((int)(strobeCent * 10)) % 2){
-                case -1: strobeCent = ((int)(strobeCent * 10) - 1) / 10.0f;
-                    break;
-                case 1: strobeCent = ((int)(strobeCent * 10) + 1) / 10.0f;
-                    break;
-                case 0: strobeCent = ((int)(strobeCent * 10)) / 10.0f;
-                    break;
+            if ((strobeCent > -0.1) && (strobeCent < 0.1)) {
+                strobeCent = 0;
             }
             float speed = strobeCent / 20.0f;
             if (speed >= 1) speed = 1;
