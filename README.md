@@ -6,7 +6,7 @@ Features:
 * Fast response
 * Chromatic and Polyphonic mode
 * Needle and Strobe display
-* Tuning Accuracy: ±0.2 cent
+* Tuning Accuracy: ±0.1 cent
 
 ## Downloads
 1. Download [apk](https://github.com/eclipse7/PolyTuner/releases/download/v2.1/polytuner-v2.1.apk)
